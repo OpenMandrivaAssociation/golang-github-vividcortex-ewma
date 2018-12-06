@@ -1,0 +1,43 @@
+From 2ca207d8d164e9253486d9a156e248021171085c Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Robert-Andr=C3=A9=20Mauchin?= <zebob.m@gmail.com>
+Date: Tue, 13 Feb 2018 01:24:51 +0100
+Subject: [PATCH] Fix wrong format type in Errorf
+
+---
+ ewma_test.go | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/ewma_test.go b/ewma_test.go
+index 8060a85..a6cd37b 100644
+--- a/ewma_test.go
++++ b/ewma_test.go
+@@ -36,7 +36,7 @@ func TestSimpleEWMA(t *testing.T) {
+ 	}
+ 	e.Set(1.0)
+ 	if e.Value() != 1.0 {
+-		t.Errorf("e.Value() is %d", e.Value())
++		t.Errorf("e.Value() is %v", e.Value())
+ 	}
+ }
+ 
+@@ -50,7 +50,7 @@ func TestVariableEWMA(t *testing.T) {
+ 	}
+ 	e.Set(1.0)
+ 	if e.Value() != 1.0 {
+-		t.Errorf("e.Value() is %d", e.Value())
++		t.Errorf("e.Value() is %v", e.Value())
+ 	}
+ }
+ 
+@@ -80,7 +80,7 @@ func TestVariableEWMAWarmup(t *testing.T) {
+ 	e.Set(5)
+ 	e.Add(1)
+ 	if e.Value() >= 5 {
+-		t.Errorf("e.Value() is %d, expected it to decay towards 0", e.Value())
++		t.Errorf("e.Value() is %v, expected it to decay towards 0", e.Value())
+ 	}
+ }
+ 
+-- 
+2.14.3
+
